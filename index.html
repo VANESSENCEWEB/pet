@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MIAUmigos — Adoção responsável de animais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #36A2EB;
+      --blue-d:    #1A7EC4;
+      --blue-l:    #7EC8F5;
+      --blue-xs:   rgba(54,162,235,.08);
+      --blue-sm:   rgba(54,162,235,.15);
+      --yellow:    #F7B500;
+      --yellow-d:  #D49A00;
+      --yellow-l:  #FFD44D;
+      --yellow-xs: rgba(247,181,0,.1);
+      --green:     #27AE60;
+      --green-l:   #6FCF97;
+      --green-xs:  rgba(39,174,96,.1);
+      --red:       #EB5757;
+      --red-xs:    rgba(235,87,87,.1);
+      --ink:       #1C1D2B;
+      --ink-s:     #3D3F5A;
+      --gray:      #6B7080;
+      --gray-l:    #A0A5B4;
+      --border:    #E8EAF0;
+      --bg:        #F7F9FC;
+      --white:     #FFFFFF;
+      --ff:        'Poppins', sans-serif;
+      --fi:        'Inter', sans-serif;
+      --r-sm:      8px;
+      --r-md:      14px;
+      --r-lg:      20px;
+      --r-xl:      28px;
+      --r-full:    999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff); color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul, ol { list-style: none; }
+
+    .icon { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; display: block; }
+
+    /* ── LAYOUT ── */
+    .wrap  { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 5rem 0; }
+    .section-alt { background: var(--bg); }
+    .section-blue { background: linear-gradient(135deg, #1A7EC4, #36A2EB); color: white; }
+    .section-dark { background: var(--ink); color: white; }
+
+    /* ── EYEBROW ── */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--fi); font-size: .75rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: .85rem;
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--blue); border-radius: 2px; }
+    .eyebrow-yellow { color: var(--yellow-d); }
+    .eyebrow-yellow::before { background: var(--yellow); }
+    .eyebrow-white { color: rgba(255,255,255,.8); }
+    .eyebrow-white::before { background: rgba(255,255,255,.6); }
+
+    /* ── SECTION TITLE ── */
+    .sec-title {
+      font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -.02em; color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .sec-title .hl { color: var(--blue); }
+    .sec-title .hy { color: var(--yellow); }
+    .sec-title-white { color: white; }
+    .sec-desc {
+      font-family: var(--fi); font-size: 1.0625rem;
+      color: var(--gray); line-height: 1.7;
+      max-width: 560px;
+    }
+    .sec-desc-white { color: rgba(255,255,255,.8); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.75rem;
+      font-family: var(--ff); font-size: .9375rem; font-weight: 700;
+      border-radius: var(--r-full); transition: all .22s; white-space: nowrap; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--yellow); color: var(--ink);
+      box-shadow: 0 4px 16px rgba(247,181,0,.35);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255,255,255,.55) 50%,
+        transparent 80%
+      );
+      animation: btnShimmer 2.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes btnShimmer {
+      0%   { left: -100%; }
+      55%  { left: 130%; }
+      100% { left: 130%; }
+    }
+    .btn-primary:hover { background: var(--yellow-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(247,181,0,.5); }
+    .btn-blue { background: var(--blue); color: white; box-shadow: 0 4px 16px rgba(54,162,235,.35); }
+    .btn-blue:hover { background: var(--blue-d); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline:hover { background: var(--blue); color: white; }
+    .btn-outline-white { background: transparent; color: white; border: 2px solid rgba(255,255,255,.5); }
+    .btn-outline-white:hover { background: rgba(255,255,255,.15); border-color: white; }
+    .btn-sm { padding: .6rem 1.25rem; font-size: .875rem; }
+    .btn-lg { padding: 1.1rem 2.25rem; font-size: 1rem; }
+    .btn .icon { width: 18px; height: 18px; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .25rem .7rem;
+      font-family: var(--fi); font-size: .7rem; font-weight: 700;
+      border-radius: var(--r-full);
+    }
+    .badge-green { background: var(--green-xs); color: var(--green); }
+    .badge-blue  { background: var(--blue-xs);  color: var(--blue-d); }
+    .badge-yellow{ background: var(--yellow-xs); color: var(--yellow-d); }
+    .badge-red   { background: var(--red-xs);    color: var(--red); }
+    .badge .icon { width: 10px; height: 10px; }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; gap: 2rem;
+    }
+    .logo { display: flex; align-items: center; gap: .5rem; font-size: 1.4rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+    .logo-blue { color: var(--blue); }
+    .logo-yellow { color: var(--yellow); }
+    .logo-paw { font-size: 1.1rem; }
+
+    .nav-links { display: flex; align-items: center; gap: .25rem; }
+    .nav-link { font-family: var(--fi); font-size: .9rem; font-weight: 500; color: var(--gray); padding: .4rem .85rem; border-radius: var(--r-full); transition: all .2s; }
+    .nav-link:hover { color: var(--blue); background: var(--blue-xs); }
+    .nav-link.active { color: var(--blue); font-weight: 600; }
+    .nav-link-has-badge { position: relative; }
+    .nav-link-has-badge::after { content: 'Novo'; position: absolute; top: -6px; right: -2px; font-size: .5rem; font-weight: 800; background: var(--yellow); color: var(--ink); padding: .05rem .3rem; border-radius: 4px; letter-spacing: .04em; }
+
+    .nav-actions { display: flex; align-items: center; gap: .75rem; }
+    .nav-icon-btn { width: 38px; height: 38px; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; color: var(--gray); transition: all .2s; position: relative; }
+    .nav-icon-btn:hover { background: var(--bg); color: var(--blue); }
+    .nav-icon-btn .icon { width: 20px; height: 20px; }
+    .notif-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; background: var(--red); border-radius: 50%; border: 2px solid white; }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hero {
+      padding: 4rem 0 0;
+      background: linear-gradient(145deg, #F0F7FE 0%, #FEFCF0 50%, #F0FAF4 100%);
+      overflow: hidden; position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(54,162,235,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: end;
+      position: relative; z-index: 2;
+    }
+    .hero-left { padding-bottom: 4rem; }
+    .hero-trust {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .4rem 1rem;
+      background: var(--green-xs);
+      border: 1px solid rgba(39,174,96,.2);
+      border-radius: var(--r-full);
+      font-family: var(--fi); font-size: .8125rem; font-weight: 600;
+      color: var(--green); margin-bottom: 1.75rem;
+    }
+    .hero-trust-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -.03em; color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .hero-title .hl { color: var(--blue); }
+    .hero-sub {
+      font-family: var(--fi); font-size: 1.0625rem;
+      color: var(--gray); line-height: 1.7;
+      max-width: 480px; margin-bottom: 2.25rem;
+    }
+    .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .hero-stats {
+      display: flex; gap: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(0,0,0,.08);
+      flex-wrap: wrap;
+    }
+    .hs-item .hs-num {
+      font-size: 1.75rem; font-weight: 800; color: var(--ink);
+      letter-spacing: -.02em; line-height: 1;
+    }
+    .hs-item .hs-lbl { font-family: var(--fi); font-size: .75rem; color: var(--gray); margin-top: .25rem; }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative; height: 480px;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .hero-img-blob {
+      width: 420px; height: 420px;
+      background: linear-gradient(135deg, #DCF0FD, #B8E2FA);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: absolute; bottom: 0;
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(54,162,235,.2);
+    }
+    .hero-pets-emoji {
+      font-size: 11rem;
+      line-height: 1;
+      padding-bottom: .5rem;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,.15));
+    }
+    /* Floating cards on hero */
+    .hero-float {
+      position: absolute;
+      background: white;
+      border-radius: var(--r-lg);
+      padding: .85rem 1.1rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+      animation: floatY 4s ease-in-out infinite;
+    }
+    .hf-1 { top: 40px; left: -20px; animation-delay: 0s; }
+    .hf-2 { top: 160px; right: -10px; animation-delay: 1.5s; }
+    .hf-3 { bottom: 120px; left: -30px; animation-delay: 0.8s; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .hf-label { font-size: .65rem; font-weight: 700; color: var(--gray); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3rem; }
+    .hf-value { font-size: .9375rem; font-weight: 700; color: var(--ink); }
+    .hf-sub { font-family: var(--fi); font-size: .7rem; color: var(--gray); }
+    .hf-score { display: flex; align-items: center; gap: .4rem; margin-top: .35rem; }
+    .hf-score-bar { flex: 1; height: 5px; background: #E8EAF0; border-radius: 3px; overflow: hidden; }
+    .hf-score-fill { height: 100%; border-radius: 3px; }
+    .hf-pct { font-size: .7rem; font-weight: 700; }
+
+    /* ══════════════════════════════════════
+       STATS BAR
+    ══════════════════════════════════════ */
+    .stats-bar {
+      background: var(--ink);
+      padding: 2.25rem 0;
+    }
+    .stats-bar-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; align-items: center;
+    }
+    .stats-bar-item { text-align: center; padding: .75rem; }
+    .sbi-num {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 800; line-height: 1;
+      letter-spacing: -.02em; margin-bottom: .4rem;
+    }
+    .sbi-num.blue   { color: var(--blue-l); }
+    .sbi-num.yellow { color: var(--yellow); }
+    .sbi-num.green  { color: var(--green-l); }
+    .sbi-num.red    { color: #FF8A8A; }
+    .sbi-lbl { font-family: var(--fi); font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.4; max-width: 180px; margin: 0 auto; }
+    .sbi-src { font-family: var(--fi); font-size: .65rem; color: rgba(255,255,255,.25); margin-top: .3rem; font-style: italic; }
+    .stats-divider { width: 1px; height: 56px; background: rgba(255,255,255,.08); margin: 0 auto; }
+
+    /* ══════════════════════════════════════
+       ANIMAL CARDS (horizontal scroll)
+    ══════════════════════════════════════ */
+    .animals-section { padding: 5rem 0 2rem; }
+    .animals-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; gap: 1rem; }
+    .animals-scroll { display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 1.5rem; -webkit-overflow-scrolling: touch; }
+    .animals-scroll::-webkit-scrollbar { height: 4px; }
+    .animals-scroll::-webkit-scrollbar-track { background: var(--bg); border-radius: 2px; }
+    .animals-scroll::-webkit-scrollbar-thumb { background: var(--blue-l); border-radius: 2px; }
+
+    .a-card {
+      flex-shrink: 0; width: 228px;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-xl); overflow: hidden;
+      transition: all .25s; cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .a-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(54,162,235,.15); border-color: var(--blue-l); }
+    .a-card-img {
+      height: 172px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+    }
+    .a-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.3) 0%, transparent 50%); }
+    .a-card-match {
+      position: absolute; bottom: 10px; left: 12px;
+      display: flex; align-items: center; gap: .3rem;
+      padding: .2rem .55rem;
+      background: rgba(255,255,255,.95);
+      border-radius: var(--r-full);
+      font-size: .68rem; font-weight: 800; color: var(--green);
+      backdrop-filter: blur(6px);
+    }
+    .a-card-match-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .a-card-match.med { color: #D49A00; }
+    .a-card-match.med .a-card-match-dot { background: var(--yellow); }
+    .a-card-fav {
+      position: absolute; top: 10px; right: 10px;
+      width: 30px; height: 30px;
+      background: rgba(255,255,255,.9); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(6px); transition: all .2s; cursor: pointer;
+    }
+    .a-card-fav:hover { background: white; transform: scale(1.1); }
+    .a-card-fav svg { width: 15px; height: 15px; stroke: var(--gray); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .a-card-fav.liked svg { stroke: var(--red); fill: var(--red); }
+    .a-card-tag {
+      position: absolute; top: 10px; left: 10px;
+      font-size: .6rem; font-weight: 800;
+      padding: .15rem .5rem; border-radius: 4px;
+      backdrop-filter: blur(6px);
+    }
+    .a-card-tag.novo { background: var(--blue); color: white; }
+    .a-card-tag.destaque { background: var(--yellow); color: var(--ink); }
+    .a-card-tag.urgente { background: var(--red); color: white; }
+
+    .a-card-body { padding: 1rem 1.1rem 1.1rem; }
+    .a-card-row1 { display: flex; align-items: center; justify-content: space-between; margin-bottom: .2rem; }
+    .a-card-name { font-size: 1.0625rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+    .a-card-sex { font-size: .65rem; font-weight: 700; padding: .15rem .45rem; border-radius: 999px; }
+    .sex-m { background: rgba(54,162,235,.12); color: var(--blue-d); }
+    .sex-f { background: rgba(235,87,87,.1); color: #C0405A; }
+    .a-card-meta { font-family: var(--fi); font-size: .75rem; color: var(--gray); margin-bottom: .65rem; display: flex; align-items: center; gap: .3rem; }
+    .a-card-meta svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .a-card-tags { display: flex; gap: .3rem; flex-wrap: wrap; margin-bottom: .7rem; }
+    .a-tag { font-family: var(--fi); font-size: .62rem; font-weight: 600; padding: .18rem .5rem; border-radius: 999px; }
+    .a-tag-b { background: var(--blue-xs); color: var(--blue-d); }
+    .a-tag-g { background: var(--green-xs); color: var(--green); }
+    .a-tag-y { background: var(--yellow-xs); color: var(--yellow-d); }
+    .a-card-btn {
+      display: block; width: 100%; padding: .55rem;
+      background: var(--blue-xs); color: var(--blue-d);
+      border-radius: var(--r-md); font-size: .8125rem; font-weight: 700;
+      text-align: center; transition: all .2s; cursor: pointer; border: none;
+      font-family: var(--ff);
+    }
+    .a-card-btn:hover { background: var(--blue); color: white; }
+
+    /* ══════════════════════════════════════
+       PETMATCH SECTION
+    ══════════════════════════════════════ */
+    .petmatch-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .pm-steps { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2rem; }
+    .pm-step {
+      display: flex; gap: 1.1rem; align-items: flex-start;
+      padding: 1.25rem 1.4rem;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-lg); transition: all .25s; cursor: default;
+    }
+    .pm-step:hover { border-color: var(--blue); box-shadow: 0 8px 24px rgba(54,162,235,.1); transform: translateX(4px); }
+    .pm-step.active { background: var(--blue-xs); border-color: var(--blue); }
+    .pm-step-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .pm-step-title { font-size: .9375rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
+    .pm-step-desc { font-family: var(--fi); font-size: .8125rem; color: var(--gray); line-height: 1.55; }
+
+    /* Match card visual */
+    .pm-visual {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 2rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,.06);
+    }
+    .pm-visual-title { font-size: .8rem; font-weight: 700; color: var(--gray); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1.5rem; text-align: center; }
+    .pm-result-card {
+      background: var(--bg); border-radius: var(--r-lg);
+      padding: 1.25rem; margin-bottom: 1rem;
+    }
+    .pm-result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .pm-result-pet { display: flex; align-items: center; gap: .75rem; }
+    .pm-result-emoji { width: 48px; height: 48px; border-radius: var(--r-md); background: linear-gradient(135deg, #DCF0FD, #B8E2FA); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; }
+    .pm-result-name { font-weight: 700; color: var(--ink); font-size: 1rem; }
+    .pm-result-meta { font-family: var(--fi); font-size: .75rem; color: var(--gray); }
+    .pm-score-big { font-size: 2rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .pm-score-lbl { font-family: var(--fi); font-size: .65rem; color: var(--gray); }
+    .pm-attrs { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+    .pm-attr { }
+    .pm-attr-row { display: flex; justify-content: space-between; margin-bottom: .2rem; font-family: var(--fi); font-size: .7rem; color: var(--gray); }
+    .pm-attr-bar { height: 4px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .pm-attr-fill { height: 100%; border-radius: 999px; background: var(--blue); }
+    .pm-why { margin-top: 1rem; padding: .85rem 1rem; background: var(--green-xs); border-radius: var(--r-md); font-family: var(--fi); font-size: .8rem; color: var(--ink-s); line-height: 1.5; border-left: 3px solid var(--green); }
+    .pm-why strong { color: var(--green); }
+
+    /* ══════════════════════════════════════
+       PETSCORE (Verificação)
+    ══════════════════════════════════════ */
+    .petscore-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .ps-steps { display: flex; flex-direction: column; gap: .75rem; margin-top: 2rem; }
+    .ps-step {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.1rem 1.25rem;
+      border-radius: var(--r-lg); position: relative;
+    }
+    .ps-step::before { content: ''; position: absolute; left: 1.25rem; top: 0; bottom: -12px; width: 2px; background: var(--border); }
+    .ps-step:last-child::before { display: none; }
+    .ps-num {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--blue); color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .875rem; font-weight: 800;
+      position: relative; z-index: 2;
+      border: 3px solid white; box-shadow: 0 0 0 2px var(--blue);
+    }
+    .ps-step-title { font-size: .9375rem; font-weight: 700; color: var(--ink); margin-bottom: .2rem; }
+    .ps-step-desc { font-family: var(--fi); font-size: .8125rem; color: var(--gray); line-height: 1.5; }
+    .ps-badges { display: flex; gap: .75rem; margin-top: 1.5rem; }
+    .ps-badge {
+      flex: 1; padding: .9rem; text-align: center;
+      border-radius: var(--r-md); border: 1.5px solid transparent;
+    }
+    .ps-badge.bronze { background: rgba(205,127,50,.08); border-color: rgba(205,127,50,.25); }
+    .ps-badge.prata  { background: rgba(160,165,180,.1); border-color: rgba(160,165,180,.3); }
+    .ps-badge.ouro   { background: rgba(247,181,0,.1);   border-color: rgba(247,181,0,.3); }
+    .ps-badge-icon { font-size: 1.5rem; margin-bottom: .35rem; }
+    .ps-badge-name { font-size: .8125rem; font-weight: 700; }
+    .ps-badge.bronze .ps-badge-name { color: #A0673A; }
+    .ps-badge.prata  .ps-badge-name { color: #7A8090; }
+    .ps-badge.ouro   .ps-badge-name { color: var(--yellow-d); }
+    .ps-badge-desc { font-family: var(--fi); font-size: .65rem; color: var(--gray); margin-top: .2rem; }
+
+    .ps-visual {
+      background: var(--ink); border-radius: var(--r-xl);
+      padding: 2.5rem 2rem; color: white; position: relative; overflow: hidden;
+    }
+    .ps-visual::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: rgba(54,162,235,.15); border-radius: 50%; }
+    .ps-v-title { font-size: 1rem; font-weight: 700; color: white; margin-bottom: 1.5rem; text-align: center; }
+    .ps-v-steps { display: flex; flex-direction: column; gap: .75rem; }
+    .ps-v-step {
+      display: flex; align-items: center; gap: .9rem;
+      padding: .9rem 1rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r-md);
+    }
+    .ps-v-step.done { background: rgba(39,174,96,.1); border-color: rgba(39,174,96,.2); }
+    .ps-v-check {
+      width: 30px; height: 30px; flex-shrink: 0;
+      border-radius: 50%; border: 2px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ps-v-step.done .ps-v-check { background: var(--green); border-color: var(--green); }
+    .ps-v-check svg { width: 14px; height: 14px; stroke: white; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .ps-v-text { font-family: var(--fi); font-size: .875rem; color: rgba(255,255,255,.85); }
+    .ps-v-text strong { color: white; font-weight: 600; display: block; }
+    .ps-v-text span { font-size: .75rem; color: rgba(255,255,255,.5); }
+    .ps-v-result {
+      margin-top: 1.5rem; padding: 1.1rem;
+      background: rgba(247,181,0,.12); border: 1px solid rgba(247,181,0,.3);
+      border-radius: var(--r-md); text-align: center;
+    }
+    .ps-v-result-badge { font-size: 2rem; margin-bottom: .4rem; }
+    .ps-v-result-text { font-weight: 700; color: var(--yellow); font-size: .9rem; }
+    .ps-v-result-sub { font-family: var(--fi); font-size: .75rem; color: rgba(255,255,255,.55); margin-top: .2rem; }
+
+    /* ══════════════════════════════════════
+       HOW IT WORKS (6 steps)
+    ══════════════════════════════════════ */
+    .flow-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 0; position: relative; margin-top: 3rem; }
+    .flow-grid::before {
+      content: '';
+      position: absolute; top: 28px;
+      left: calc(100%/12); right: calc(100%/12);
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--blue-l) 0, var(--blue-l) 8px, transparent 8px, transparent 16px);
+    }
+    .flow-step { position: relative; text-align: center; padding: 0 .75rem; }
+    .flow-circle {
+      width: 56px; height: 56px; border-radius: 50%;
+      margin: 0 auto 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; position: relative; z-index: 2;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      background: white; border: 2px solid var(--blue-l);
+      transition: all .25s;
+    }
+    .flow-step:hover .flow-circle { border-color: var(--blue); box-shadow: 0 8px 24px rgba(54,162,235,.25); transform: scale(1.1); }
+    .flow-step.accent .flow-circle { background: var(--blue); border-color: var(--blue); }
+    .flow-num { font-size: .65rem; font-weight: 800; color: var(--blue); letter-spacing: .06em; margin-bottom: .35rem; }
+    .flow-label { font-size: .875rem; font-weight: 700; color: var(--ink); margin-bottom: .3rem; line-height: 1.3; }
+    .flow-desc { font-family: var(--fi); font-size: .75rem; color: var(--gray); line-height: 1.45; }
+    .flow-callout {
+      margin-top: 2.5rem; padding: 1.1rem 1.75rem;
+      background: var(--blue-xs); border-radius: var(--r-lg);
+      font-family: var(--fi); font-size: .9375rem;
+      color: var(--ink-s); text-align: center;
+      border: 1px solid rgba(54,162,235,.2);
+    }
+    .flow-callout strong { color: var(--blue-d); }
+
+    /* ══════════════════════════════════════
+       PETCARE 90 DAYS
+    ══════════════════════════════════════ */
+    .petcare-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+    .petcare-timeline { margin-top: 2.5rem; position: relative; }
+    .petcare-line {
+      position: absolute; left: 22px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--blue), var(--green));
+    }
+    .pc-item {
+      display: flex; gap: 1.25rem; margin-bottom: 1.5rem;
+      padding-left: .25rem; position: relative;
+    }
+    .pc-dot {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 50%; background: white;
+      border: 3px solid var(--blue); display: flex; align-items: center;
+      justify-content: center; font-size: 1rem;
+      position: relative; z-index: 2;
+      box-shadow: 0 4px 12px rgba(54,162,235,.2);
+      transition: all .2s;
+    }
+    .pc-item:hover .pc-dot { transform: scale(1.1); border-color: var(--blue-d); }
+    .pc-day { font-family: var(--fi); font-size: .7rem; font-weight: 800; color: var(--blue); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .2rem; }
+    .pc-title { font-size: .9375rem; font-weight: 700; color: var(--ink); margin-bottom: .2rem; }
+    .pc-desc { font-family: var(--fi); font-size: .8125rem; color: var(--gray); line-height: 1.5; }
+    .pc-extra {
+      display: inline-flex; align-items: center; gap: .35rem;
+      margin-top: .4rem; font-family: var(--fi); font-size: .75rem; font-weight: 600;
+      color: var(--green); background: var(--green-xs); padding: .2rem .6rem; border-radius: 999px;
+    }
+
+    .petcare-features {
+      background: var(--bg); border-radius: var(--r-xl);
+      padding: 2rem; margin-top: 2.5rem;
+    }
+    .pcf-title { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 1.25rem; }
+    .pcf-items { display: flex; flex-direction: column; gap: .85rem; }
+    .pcf-item { display: flex; gap: .85rem; align-items: flex-start; padding: .85rem 1rem; background: white; border-radius: var(--r-md); }
+    .pcf-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .pcf-text strong { font-size: .875rem; color: var(--ink); font-weight: 600; display: block; margin-bottom: .15rem; }
+    .pcf-text span { font-family: var(--fi); font-size: .775rem; color: var(--gray); line-height: 1.45; }
+
+    /* ══════════════════════════════════════
+       PETVET
+    ══════════════════════════════════════ */
+    .petvet-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .petvet-cards { display: flex; flex-direction: column; gap: .85rem; }
+    .pv-clinic {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-lg); transition: all .2s;
+    }
+    .pv-clinic:hover { border-color: var(--blue); transform: translateX(4px); }
+    .pv-clinic-icon { width: 44px; height: 44px; flex-shrink: 0; background: var(--blue-xs); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+    .pv-clinic-name { font-weight: 700; color: var(--ink); font-size: .9375rem; }
+    .pv-clinic-info { font-family: var(--fi); font-size: .75rem; color: var(--gray); }
+    .pv-clinic-badge { margin-left: auto; }
+
+    .petvet-promo {
+      background: linear-gradient(135deg, var(--blue), var(--blue-d));
+      border-radius: var(--r-xl); padding: 2rem;
+      color: white; position: relative; overflow: hidden;
+    }
+    .petvet-promo::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: rgba(255,255,255,.08); border-radius: 50%; }
+    .pvp-label { font-family: var(--fi); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: .5rem; }
+    .pvp-pct { font-size: 4rem; font-weight: 900; color: var(--yellow); line-height: 1; letter-spacing: -.03em; }
+    .pvp-title { font-size: 1.125rem; font-weight: 700; color: white; margin-top: .25rem; margin-bottom: .75rem; }
+    .pvp-desc { font-family: var(--fi); font-size: .875rem; color: rgba(255,255,255,.75); line-height: 1.6; margin-bottom: 1.25rem; }
+    .pvp-day { font-family: var(--fi); font-size: .8125rem; font-weight: 600; color: var(--yellow); background: rgba(247,181,0,.15); padding: .35rem .85rem; border-radius: 999px; display: inline-block; }
+
+    /* ══════════════════════════════════════
+       PARA PROTETORES / PETCRM
+    ══════════════════════════════════════ */
+    .protectors-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .prot-features { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; margin-top: 2rem; }
+    .prot-feat {
+      padding: 1.25rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-lg);
+    }
+    .prot-feat-icon { font-size: 1.5rem; margin-bottom: .75rem; }
+    .prot-feat-title { font-size: .9rem; font-weight: 700; color: white; margin-bottom: .35rem; }
+    .prot-feat-desc { font-family: var(--fi); font-size: .78rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+    .prot-pricing {
+      margin-top: 1.75rem; padding: 1.25rem 1.5rem;
+      background: rgba(247,181,0,.12); border: 1px solid rgba(247,181,0,.25);
+      border-radius: var(--r-lg);
+    }
+    .pp-free { font-size: 1.5rem; font-weight: 800; color: var(--yellow); }
+    .pp-free-desc { font-family: var(--fi); font-size: .85rem; color: rgba(255,255,255,.7); margin-top: .25rem; margin-bottom: .75rem; }
+    .pp-pro { font-family: var(--fi); font-size: .8rem; color: rgba(255,255,255,.5); }
+
+    /* CRM dashboard mockup */
+    .crm-mock {
+      background: white; border-radius: var(--r-xl);
+      overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.15);
+    }
+    .crm-bar {
+      background: var(--ink); padding: .6rem 1rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .crm-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .crm-screen { padding: 1.25rem; background: var(--bg); }
+    .crm-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .crm-logo { font-size: .875rem; font-weight: 800; color: var(--blue); }
+    .crm-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-bottom: 1rem; }
+    .crm-stat { background: white; border-radius: var(--r-md); padding: .75rem .85rem; text-align: center; }
+    .crm-stat-num { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+    .crm-stat-lbl { font-family: var(--fi); font-size: .6rem; color: var(--gray); margin-top: .2rem; }
+    .crm-animal-row {
+      display: flex; align-items: center; gap: .75rem;
+      background: white; border-radius: var(--r-md);
+      padding: .65rem .85rem; margin-bottom: .5rem;
+    }
+    .crm-emoji { font-size: 1.5rem; width: 36px; text-align: center; }
+    .crm-name { font-size: .85rem; font-weight: 700; color: var(--ink); }
+    .crm-status { font-family: var(--fi); font-size: .7rem; color: var(--gray); }
+    .crm-badge-sm { margin-left: auto; font-family: var(--fi); font-size: .62rem; font-weight: 700; padding: .15rem .5rem; border-radius: 999px; }
+
+    /* ══════════════════════════════════════
+       DIFERENCIAIS (6 cards)
+    ══════════════════════════════════════ */
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; margin-top: 3rem;
+    }
+    .diff-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 1.75rem;
+      transition: all .25s; position: relative; overflow: hidden;
+    }
+    .diff-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(54,162,235,.1); }
+    .diff-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--blue-l)); opacity: 0; transition: opacity .25s; }
+    .diff-card:hover::before { opacity: 1; }
+    .diff-num { position: absolute; top: 1.25rem; right: 1.5rem; font-size: .8rem; font-weight: 800; color: var(--border); }
+    .diff-icon-wrap { width: 52px; height: 52px; border-radius: var(--r-md); background: var(--blue-xs); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.25rem; transition: all .25s; }
+    .diff-card:hover .diff-icon-wrap { background: var(--blue); transform: scale(1.1); }
+    .diff-title { font-size: 1rem; font-weight: 800; color: var(--ink); margin-bottom: .5rem; letter-spacing: -.01em; }
+    .diff-desc { font-family: var(--fi); font-size: .8375rem; color: var(--gray); line-height: 1.6; }
+    .diff-tag { margin-top: .85rem; display: inline-flex; align-items: center; gap: .3rem; font-family: var(--fi); font-size: .68rem; font-weight: 700; color: var(--blue-d); background: var(--blue-xs); padding: .25rem .6rem; border-radius: 999px; }
+
+    /* ══════════════════════════════════════
+       SUCCESS STORIES
+    ══════════════════════════════════════ */
+    .stories-scroll { display: flex; gap: 1.25rem; overflow-x: auto; padding-bottom: 1rem; margin-top: 2.5rem; }
+    .stories-scroll::-webkit-scrollbar { height: 3px; }
+    .stories-scroll::-webkit-scrollbar-thumb { background: var(--blue-l); border-radius: 2px; }
+    .story-card { flex-shrink: 0; width: 300px; background: white; border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; }
+    .story-img { height: 180px; background: linear-gradient(135deg, #DCF0FD, #B8E2FA); display: flex; align-items: center; justify-content: center; font-size: 5rem; position: relative; }
+    .story-label { position: absolute; bottom: 10px; left: 12px; font-size: .65rem; font-weight: 800; background: var(--green); color: white; padding: .2rem .6rem; border-radius: 4px; letter-spacing: .04em; }
+    .story-body { padding: 1.1rem 1.25rem; }
+    .story-day { font-family: var(--fi); font-size: .7rem; font-weight: 700; color: var(--blue); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .35rem; }
+    .story-title { font-size: .9375rem; font-weight: 700; color: var(--ink); margin-bottom: .4rem; }
+    .story-text { font-family: var(--fi); font-size: .8125rem; color: var(--gray); line-height: 1.55; }
+    .story-author { display: flex; align-items: center; gap: .6rem; margin-top: .85rem; padding-top: .85rem; border-top: 1px solid var(--border); }
+    .story-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; color: white; font-size: .75rem; font-weight: 700; }
+    .story-name { font-family: var(--fi); font-size: .8125rem; font-weight: 600; color: var(--ink); }
+    .story-match { font-family: var(--fi); font-size: .7rem; color: var(--green); }
+
+    /* ══════════════════════════════════════
+       PROTECTORS NETWORK
+    ══════════════════════════════════════ */
+    .network-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2.5rem; }
+    .network-card {
+      background: white; border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 1.25rem 1rem;
+      text-align: center; transition: all .2s;
+    }
+    .network-card:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(54,162,235,.1); }
+    .nc-icon { font-size: 2rem; margin-bottom: .6rem; }
+    .nc-name { font-size: .875rem; font-weight: 700; color: var(--ink); margin-bottom: .2rem; }
+    .nc-loc { font-family: var(--fi); font-size: .72rem; color: var(--gray); margin-bottom: .5rem; }
+    .nc-tag { font-family: var(--fi); font-size: .6rem; font-weight: 700; padding: .2rem .5rem; border-radius: 4px; }
+
+    /* ══════════════════════════════════════
+       CTA FINAL
+    ══════════════════════════════════════ */
+    .cta-section {
+      padding: 5rem 0; text-align: center;
+      background: linear-gradient(135deg, #0A5F9E 0%, #36A2EB 50%, #1A7EC4 100%);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 120%, rgba(247,181,0,.15), transparent 60%); }
+    .cta-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .cta-title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; color: white; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1.25rem; }
+    .cta-title .hy { color: var(--yellow); }
+    .cta-desc { font-family: var(--fi); font-size: 1.0625rem; color: rgba(255,255,255,.8); line-height: 1.65; margin-bottom: 2.5rem; }
+    .cta-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .cta-note { font-family: var(--fi); font-size: .8125rem; color: rgba(255,255,255,.55); display: flex; align-items: center; justify-content: center; gap: .4rem; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .footer { background: var(--ink); color: rgba(255,255,255,.65); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { font-family: var(--fi); font-size: .875rem; line-height: 1.65; max-width: 280px; margin-top: 1rem; }
+    .footer-col h4 { font-family: var(--ff); font-weight: 700; color: white; font-size: .9rem; margin-bottom: 1rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col a { font-family: var(--fi); font-size: .85rem; color: rgba(255,255,255,.55); transition: color .2s; }
+    .footer-col a:hover { color: var(--blue-l); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); font-family: var(--fi); font-size: .8125rem; gap: 1rem; flex-wrap: wrap; }
+    .social-links { display: flex; gap: .6rem; }
+    .social-btn { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55); transition: all .2s; font-size: .85rem; }
+    .social-btn:hover { border-color: var(--blue); color: var(--blue-l); background: var(--blue-xs); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .petmatch-inner, .petscore-inner, .petcare-inner, .petvet-inner, .protectors-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .flow-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+      .flow-grid::before { display: none; }
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .network-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .stats-bar-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .wrap { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { height: 280px; }
+      .hero-img-blob { width: 280px; height: 280px; }
+      .hf-1, .hf-3 { left: 0; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .prot-features { grid-template-columns: 1fr; }
+      .network-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">
+      <span class="logo-blue">MiAU</span><span class="logo-yellow">mi</span>gos<span class="logo-paw">🐾</span>
+    </div>
+    <div class="nav-links">
+      <a href="#encontrar" class="nav-link active">Encontrar Pets</a>
+      <a href="#como-funciona" class="nav-link">Como Funciona</a>
+      <a href="#protetores" class="nav-link nav-link-has-badge">ONGs & Protetores</a>
+      <a href="#historias" class="nav-link">Histórias</a>
+      <a href="#" class="nav-link">Ajuda</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" title="Favoritos">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="nav-icon-btn" title="Notificações">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <button class="nav-icon-btn" title="Perfil">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <a href="#encontrar" class="btn btn-primary btn-sm">
+        Fazer Match
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="home">
+  <div class="wrap hero-inner">
+    <div class="hero-left">
+      <div class="hero-trust">
+        <span class="hero-trust-dot"></span>
+        🛡️ Adoção verificada e acompanhada
+      </div>
+      <h1 class="hero-title">
+        Encontre o seu<br>
+        <span class="hl">melhor amigo.</span>
+      </h1>
+      <p class="hero-sub">
+        Matching inteligente por estilo de vida, verificação real do adotante
+        e 90 dias de suporte pós-adoção. Adoção responsável que funciona de verdade.
+      </p>
+      <div class="hero-actions">
+        <a href="#encontrar" class="btn btn-primary btn-lg">
+          🐾 Quero Adotar
+        </a>
+        <a href="#protetores" class="btn btn-outline btn-lg">
+          Sou Protetora/ONG
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs-item">
+          <div class="hs-num">+4.200</div>
+          <div class="hs-lbl">adoções bem-sucedidas</div>
+        </div>
+        <div class="hs-item">
+          <div class="hs-num" style="color:var(--green)">&lt;8%</div>
+          <div class="hs-lbl">taxa de devolução</div>
+        </div>
+        <div class="hs-item">
+          <div class="hs-num" style="color:var(--blue)">90 dias</div>
+          <div class="hs-lbl">de suporte garantido</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Floating cards -->
+      <div class="hero-float hf-1">
+        <div class="hf-label">PetMatch Score</div>
+        <div class="hf-value" style="color:var(--green)">🐶 Bidu — 94%</div>
+        <div class="hf-score">
+          <div class="hf-score-bar"><div class="hf-score-fill" style="width:94%;background:var(--green)"></div></div>
+          <span class="hf-pct" style="color:var(--green)">94%</span>
+        </div>
+        <div class="hf-sub">Compatível com seu estilo de vida</div>
+      </div>
+      <div class="hero-float hf-2">
+        <div class="hf-label">PetScore</div>
+        <div class="hf-value">🏆 Badge Ouro</div>
+        <div class="hf-sub">Adotante verificado ✓</div>
+      </div>
+      <div class="hero-float hf-3">
+        <div class="hf-label">PetCare — Dia 30</div>
+        <div class="hf-value" style="color:var(--blue)">💊 Cupom Vet 30%</div>
+        <div class="hf-sub">Clínica parceira próxima</div>
+      </div>
+      <!-- Blob + animals -->
+      <div class="hero-img-blob">
+        <div class="hero-pets-emoji">🐶🐱</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STATS BAR ══════════ -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-bar-grid">
+      <div class="stats-bar-item">
+        <div class="sbi-num blue">30,2 M</div>
+        <div class="sbi-lbl">cães e gatos abandonados no Brasil</div>
+        <div class="sbi-src">Fonte: OMS</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="sbi-num red">85%</div>
+        <div class="sbi-lbl">das adoções resultam em devolução em 90 dias</div>
+        <div class="sbi-src">Fonte: IFSULDEMINAS</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="sbi-num yellow">87%</div>
+        <div class="sbi-lbl">dos adotantes pedem suporte pós-adoção</div>
+        <div class="sbi-src">Fonte: GoldeN/Opinion Box 2025</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="sbi-num green">R$ 78bi</div>
+        <div class="sbi-lbl">mercado pet BR em 2025 — 3° maior do mundo</div>
+        <div class="sbi-src">Fonte: Abempet 2025</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ANIMALS ══════════ -->
+<section class="animals-section" id="encontrar">
+  <div class="wrap">
+    <div class="animals-header">
+      <div>
+        <div class="eyebrow">Seus matches de hoje</div>
+        <h2 class="sec-title">Perfis <span class="hl">compatíveis</span> com você.</h2>
+      </div>
+      <a href="#" class="btn btn-outline btn-sm">Ver todos →</a>
+    </div>
+    <div class="animals-scroll">
+
+      <div class="a-card">
+        <div class="a-card-img" style="background:linear-gradient(135deg,#DCF0FD,#B8E2FA)">
+          🐶
+          <div class="a-card-img-overlay"></div>
+          <div class="a-card-match"><span class="a-card-match-dot"></span>Match 94%</div>
+          <div class="a-card-tag destaque">Destaque</div>
+          <div class="a-card-fav liked">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="a-card-body">
+          <div class="a-card-row1"><span class="a-card-name">Lola</span><span class="a-card-sex sex-f">♀</span></div>
+          <div class="a-card-meta"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/></svg>3 anos · Gato · Pequena · 1,1km</div>
+          <div class="a-card-tags"><span class="a-tag a-tag-g">Calma</span><span class="a-tag a-tag-b">Castrada</span></div>
+          <button class="a-card-btn">Ver perfil completo</button>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-card-img" style="background:linear-gradient(135deg,#D4F0DC,#90D4A4)">
+          🐱
+          <div class="a-card-img-overlay"></div>
+          <div class="a-card-match"><span class="a-card-match-dot"></span>Match 89%</div>
+          <div class="a-card-tag novo">Novo</div>
+          <div class="a-card-fav">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="a-card-body">
+          <div class="a-card-row1"><span class="a-card-name">Luna</span><span class="a-card-sex sex-f">♀</span></div>
+          <div class="a-card-meta"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/></svg>1 ano · Gato · Pequena · 2,4km</div>
+          <div class="a-card-tags"><span class="a-tag a-tag-g">Exclusiva</span><span class="a-tag a-tag-b">Vacinada</span></div>
+          <button class="a-card-btn">Ver perfil completo</button>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-card-img" style="background:linear-gradient(135deg,#F0E8D4,#D4A87A)">
+          🐶
+          <div class="a-card-img-overlay"></div>
+          <div class="a-card-match"><span class="a-card-match-dot"></span>Match 86%</div>
+          <div class="a-card-tag novo">Novo</div>
+          <div class="a-card-fav">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="a-card-body">
+          <div class="a-card-row1"><span class="a-card-name">Thor</span><span class="a-card-sex sex-m">♂</span></div>
+          <div class="a-card-meta"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/></svg>2 anos · Cão · Médio · 2,8km</div>
+          <div class="a-card-tags"><span class="a-tag a-tag-b">Sociável</span><span class="a-tag a-tag-y">Com crianças</span></div>
+          <button class="a-card-btn">Ver perfil completo</button>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-card-img" style="background:linear-gradient(135deg,#F0D4DC,#D47A90)">
+          🐶
+          <div class="a-card-img-overlay"></div>
+          <div class="a-card-match med"><span class="a-card-match-dot"></span>Match 81%</div>
+          <div class="a-card-fav">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="a-card-body">
+          <div class="a-card-row1"><span class="a-card-name">Bob</span><span class="a-card-sex sex-m">♂</span></div>
+          <div class="a-card-meta"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/></svg>4 anos · Cão · Grande · 4,2km</div>
+          <div class="a-card-tags"><span class="a-tag a-tag-g">Tranquilo</span><span class="a-tag a-tag-b">Treinado</span></div>
+          <button class="a-card-btn">Ver perfil completo</button>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-card-img" style="background:linear-gradient(135deg,#E4D4F0,#A890D4)">
+          🐱
+          <div class="a-card-img-overlay"></div>
+          <div class="a-card-match med"><span class="a-card-match-dot"></span>Match 77%</div>
+          <div class="a-card-tag urgente">Urgente</div>
+          <div class="a-card-fav">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="a-card-body">
+          <div class="a-card-row1"><span class="a-card-name">Bonita</span><span class="a-card-sex sex-f">♀</span></div>
+          <div class="a-card-meta"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/></svg>7 meses · Gato · Pequena · 2,5km</div>
+          <div class="a-card-tags"><span class="a-tag a-tag-b">Filhote</span><span class="a-tag a-tag-y">Bom ap.</span></div>
+          <button class="a-card-btn">Ver perfil completo</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PETMATCH ══════════ -->
+<section class="section section-alt" id="como-funciona">
+  <div class="wrap">
+    <div class="petmatch-inner">
+      <div>
+        <div class="eyebrow">PetMatch™</div>
+        <h2 class="sec-title">Compatibilidade <span class="hl">inteligente</span> entre você e o animal.</h2>
+        <p class="sec-desc">Respondendo 12 perguntas sobre seu estilo de vida, nosso algoritmo cruza com os 12 atributos comportamentais do animal e gera um score 0–100 com explicação.</p>
+        <div class="pm-steps">
+          <div class="pm-step active">
+            <div class="pm-step-icon" style="background:var(--blue-xs)">📋</div>
+            <div>
+              <div class="pm-step-title">O Animal é mapeado com 12 atributos</div>
+              <div class="pm-step-desc">Energia, sociabilidade, latido, treinabilidade, ansiedade de separação, comportamento com crianças e mais.</div>
+            </div>
+          </div>
+          <div class="pm-step">
+            <div class="pm-step-icon" style="background:var(--yellow-xs)">🏠</div>
+            <div>
+              <div class="pm-step-title">Você responde 12 perguntas em 4 min</div>
+              <div class="pm-step-desc">Rotina, espaço, horas fora de casa, crianças, outros pets, orçamento mensal e experiência prévia.</div>
+            </div>
+          </div>
+          <div class="pm-step">
+            <div class="pm-step-icon" style="background:var(--green-xs)">⭐</div>
+            <div>
+              <div class="pm-step-title">Score 0–100 com explicação real</div>
+              <div class="pm-step-desc">O algoritmo explica por que o animal combina com você — não apenas um número, mas os motivos específicos.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1.75rem">
+          <a href="#" class="btn btn-blue">Fazer meu questionário →</a>
+        </div>
+      </div>
+      <div class="pm-visual">
+        <div class="pm-visual-title">Resultado do seu PetMatch</div>
+        <div class="pm-result-card">
+          <div class="pm-result-header">
+            <div class="pm-result-pet">
+              <div class="pm-result-emoji">🐶</div>
+              <div>
+                <div class="pm-result-name">Bidu, 2 anos</div>
+                <div class="pm-result-meta">Médio · Boa Viagem · 1,2km</div>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div class="pm-score-big">94%</div>
+              <div class="pm-score-lbl">compatibilidade</div>
+            </div>
+          </div>
+          <div class="pm-attrs">
+            <div class="pm-attr">
+              <div class="pm-attr-row"><span>Energia</span><span style="color:var(--blue)">Médio</span></div>
+              <div class="pm-attr-bar"><div class="pm-attr-fill" style="width:60%"></div></div>
+            </div>
+            <div class="pm-attr">
+              <div class="pm-attr-row"><span>Sociabilidade</span><span style="color:var(--blue)">Alta</span></div>
+              <div class="pm-attr-bar"><div class="pm-attr-fill" style="width:90%"></div></div>
+            </div>
+            <div class="pm-attr">
+              <div class="pm-attr-row"><span>Latido</span><span style="color:var(--blue)">Baixo</span></div>
+              <div class="pm-attr-bar"><div class="pm-attr-fill" style="width:25%"></div></div>
+            </div>
+            <div class="pm-attr">
+              <div class="pm-attr-row"><span>Independência</span><span style="color:var(--blue)">Alta</span></div>
+              <div class="pm-attr-bar"><div class="pm-attr-fill" style="width:80%"></div></div>
+            </div>
+          </div>
+          <div class="pm-why">
+            <strong>✨ Por que este match?</strong> Bidu tem energia média e boa independência — ideal pra quem fica 6–8h fora por dia e mora em apartamento. Sociável com crianças, perfil ideal para sua família.
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:1rem">
+          <span style="font-family:var(--fi);font-size:.8rem;color:var(--gray)">🔒 Score calculado em &lt; 1 segundo · Referência: Petfinder.my reduziu tempo de adoção de 60 para 30 dias com IA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PETSCORE ══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="petscore-inner">
+      <div class="ps-visual">
+        <div class="ps-v-title">Verificação PetScore em andamento</div>
+        <div class="ps-v-steps">
+          <div class="ps-v-step done">
+            <div class="ps-v-check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <div class="ps-v-text"><strong>CPF validado ✓</strong><span>Receita Federal · Confirmado</span></div>
+          </div>
+          <div class="ps-v-step done">
+            <div class="ps-v-check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <div class="ps-v-text"><strong>Endereço confirmado ✓</strong><span>Geolocalização + Comprovante</span></div>
+          </div>
+          <div class="ps-v-step">
+            <div class="ps-v-check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg></div>
+            <div class="ps-v-text"><strong>Vídeo-tour da casa</strong><span>Em análise… 2 min restantes</span></div>
+          </div>
+        </div>
+        <div class="ps-v-result">
+          <div class="ps-v-result-badge">🏆</div>
+          <div class="ps-v-result-text">Badge Ouro — Desbloqueado!</div>
+          <div class="ps-v-result-sub">Adoções futuras com menos etapas</div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">PetScore™ — Verificação Digital</div>
+        <h2 class="sec-title">Adoção segura para <span class="hl">todos os lados.</span></h2>
+        <p class="sec-desc">Substituímos o questionário fraudável por verificação real multicamada. Adotante verificado = mais segurança pra protetora e menos chance de devolução.</p>
+        <div class="ps-steps">
+          <div class="ps-step">
+            <div class="ps-num">1</div>
+            <div>
+              <div class="ps-step-title">Validação de CPF via Receita Federal</div>
+              <div class="ps-step-desc">Confirmação da identidade real do adotante — rápida e automática.</div>
+            </div>
+          </div>
+          <div class="ps-step">
+            <div class="ps-num">2</div>
+            <div>
+              <div class="ps-step-title">Endereço por geolocalização + comprovante</div>
+              <div class="ps-step-desc">Verificamos se o endereço informado é real e corresponde ao local da adoção.</div>
+            </div>
+          </div>
+          <div class="ps-step">
+            <div class="ps-num" style="background:var(--yellow);box-shadow:0 0 0 2px var(--yellow)">3</div>
+            <div>
+              <div class="ps-step-title">Vídeo-tour guiado da residência</div>
+              <div class="ps-step-desc">Sala, onde o pet vai dormir e área externa — com checklist automático. Vídeos excluídos após 90 dias (LGPD).</div>
+            </div>
+          </div>
+        </div>
+        <div class="ps-badges">
+          <div class="ps-badge bronze">
+            <div class="ps-badge-icon">🥉</div>
+            <div class="ps-badge-name">Bronze</div>
+            <div class="ps-badge-desc">CPF validado</div>
+          </div>
+          <div class="ps-badge prata">
+            <div class="ps-badge-icon">🥈</div>
+            <div class="ps-badge-name">Prata</div>
+            <div class="ps-badge-desc">+ Endereço</div>
+          </div>
+          <div class="ps-badge ouro">
+            <div class="ps-badge-icon">🏆</div>
+            <div class="ps-badge-name">Ouro</div>
+            <div class="ps-badge-desc">+ Vídeo da casa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HOW IT WORKS ══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div style="text-align:center;max-width:640px;margin:0 auto">
+      <div class="eyebrow" style="justify-content:center">Como Funciona</div>
+      <h2 class="sec-title" style="text-align:center">Um ciclo <span class="hl">completo</span> e responsável.</h2>
+      <p class="sec-desc" style="text-align:center;margin:0 auto">6 etapas. Do cadastro do animal ao dia 90 — tudo acompanhado.</p>
+    </div>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <div class="flow-circle">📝</div>
+        <div class="flow-num">01</div>
+        <div class="flow-label">Cadastro do Animal</div>
+        <div class="flow-desc">Protetor preenche 12 atributos comportamentais</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">📣</div>
+        <div class="flow-num">02</div>
+        <div class="flow-label">Divulgação por IA</div>
+        <div class="flow-desc">Posts criados automaticamente para Instagram e WhatsApp</div>
+      </div>
+      <div class="flow-step accent">
+        <div class="flow-circle" style="background:var(--blue);font-size:1.1rem">🧠</div>
+        <div class="flow-num">03</div>
+        <div class="flow-label">Match & PetScore</div>
+        <div class="flow-desc">Score de compatibilidade + CPF/endereço/vídeo</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">📄</div>
+        <div class="flow-num">04</div>
+        <div class="flow-label">Termo Digital</div>
+        <div class="flow-desc">15 dias de adaptação com contrato eletrônico</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">🏠</div>
+        <div class="flow-num">05</div>
+        <div class="flow-label">Adoção Realizada</div>
+        <div class="flow-desc">Animal vai para o lar com histórico completo</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">💬</div>
+        <div class="flow-num">06</div>
+        <div class="flow-label">90 Dias PetCare</div>
+        <div class="flow-desc">6 check-ins automáticos com conteúdo e suporte</div>
+      </div>
+    </div>
+    <div class="flow-callout">
+      A maioria das plataformas termina na etapa 5. <strong>A MIAUmigos começa de verdade ali.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PETCARE ══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="petcare-inner">
+      <div>
+        <div class="eyebrow">PetCare™</div>
+        <h2 class="sec-title">90 dias de <span class="hl">suporte</span> — onde os outros param, nós começamos.</h2>
+        <p class="sec-desc">87% dos adotantes dizem que suporte pós-adoção evitaria o abandono. Nenhuma plataforma brasileira oferecia isso. Até agora.</p>
+        <div class="petcare-timeline" style="margin-top:2rem">
+          <div class="petcare-line"></div>
+          <div class="pc-item">
+            <div class="pc-dot">🐾</div>
+            <div>
+              <div class="pc-day">Dia 3</div>
+              <div class="pc-title">Primeiros passos e adaptação</div>
+              <div class="pc-desc">Como introduzir o pet ao ambiente novo sem trauma.</div>
+            </div>
+          </div>
+          <div class="pc-item">
+            <div class="pc-dot">🍽️</div>
+            <div>
+              <div class="pc-day">Dia 7</div>
+              <div class="pc-title">Rotina e alimentação</div>
+              <div class="pc-desc">Estabelecendo horários e construindo confiança mútua.</div>
+            </div>
+          </div>
+          <div class="pc-item">
+            <div class="pc-dot" style="border-color:var(--yellow)">📄</div>
+            <div>
+              <div class="pc-day" style="color:var(--yellow-d)">Dia 15</div>
+              <div class="pc-title">Fim do Período de Adaptação</div>
+              <div class="pc-desc">Encerramento do PetWish Trial. Devolução sem julgamento se necessário.</div>
+            </div>
+          </div>
+          <div class="pc-item">
+            <div class="pc-dot">💊</div>
+            <div>
+              <div class="pc-day">Dia 30</div>
+              <div class="pc-title">Vet Check + Cupom PetVet</div>
+              <div class="pc-desc">Cupom de 30% na 1ª consulta em clínica parceira.</div>
+              <span class="pc-extra">💊 PetVet ativado automaticamente</span>
+            </div>
+          </div>
+          <div class="pc-item">
+            <div class="pc-dot">💪</div>
+            <div>
+              <div class="pc-day">Dia 60</div>
+              <div class="pc-title">Consolidação do vínculo</div>
+              <div class="pc-desc">Orientação sobre treinamento, socialização e comportamento.</div>
+            </div>
+          </div>
+          <div class="pc-item">
+            <div class="pc-dot" style="border-color:var(--green);background:var(--green)">🎉</div>
+            <div>
+              <div class="pc-day" style="color:var(--green)">Dia 90</div>
+              <div class="pc-title">Adoção sólida — Caso de Sucesso!</div>
+              <div class="pc-desc">Badge de adotante responsável. Convite para compartilhar sua história.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="petcare-features">
+          <div class="pcf-title">O que acontece em cada check-in</div>
+          <div class="pcf-items">
+            <div class="pcf-item">
+              <div class="pcf-icon" style="background:var(--blue-xs)">📚</div>
+              <div class="pcf-text">
+                <strong>Conteúdo educativo personalizado</strong>
+                <span>Alimentação, vacinação e comportamento adaptados ao animal adotado.</span>
+              </div>
+            </div>
+            <div class="pcf-item">
+              <div class="pcf-icon" style="background:var(--green-xs)">💬</div>
+              <div class="pcf-text">
+                <strong>Canal direto com a protetora</strong>
+                <span>Botão "Preciso de Ajuda" conecta ao protetor original via WhatsApp ou app.</span>
+              </div>
+            </div>
+            <div class="pcf-item">
+              <div class="pcf-icon" style="background:var(--yellow-xs)">📸</div>
+              <div class="pcf-text">
+                <strong>Convite para Caso de Sucesso</strong>
+                <span>No dia 90, compartilhe a foto — ela vira inspiração para novos adotantes.</span>
+              </div>
+            </div>
+            <div class="pcf-item">
+              <div class="pcf-icon" style="background:var(--red-xs)">🔄</div>
+              <div class="pcf-text">
+                <strong>Devolução sem culpa nos 15 dias</strong>
+                <span>Se não funcionar no período formal, o animal retorna com prioridade de re-divulgação.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PETVET ══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="petvet-inner">
+      <div>
+        <div class="eyebrow">PetVet Network™</div>
+        <h2 class="sec-title">Rede de clínicas <span class="hl">parceiras</span> com desconto real.</h2>
+        <p class="sec-desc">65% dos adotantes querem desconto vet integrado. A MIAUmigos ativa o cupom PetVet automaticamente no dia 30 da adoção.</p>
+        <div class="petvet-promo">
+          <div class="pvp-label">Cupom PetVet automático</div>
+          <div class="pvp-pct">30%</div>
+          <div class="pvp-title">na 1ª consulta veterinária</div>
+          <div class="pvp-desc">Ativado automaticamente no dia 30 do PetCare. Válido em todas as clínicas parceiras verificadas na sua cidade.</div>
+          <div class="pvp-day">📅 Ativação automática no Dia 30</div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow eyebrow-yellow">Clínicas verificadas perto de você</div>
+        <div class="petvet-cards" style="margin-top:1rem">
+          <div class="pv-clinic">
+            <div class="pv-clinic-icon">🏥</div>
+            <div>
+              <div class="pv-clinic-name">Clínica PetAmigo</div>
+              <div class="pv-clinic-info">Boa Viagem · 1,2km · Aberta agora</div>
+            </div>
+            <div class="pv-clinic-badge"><span class="badge badge-green">✓ Parceira</span></div>
+          </div>
+          <div class="pv-clinic">
+            <div class="pv-clinic-icon">🩺</div>
+            <div>
+              <div class="pv-clinic-name">VetCenter Recife</div>
+              <div class="pv-clinic-info">Torre · 2,4km · Fechada — Abre 8h</div>
+            </div>
+            <div class="pv-clinic-badge"><span class="badge badge-green">✓ Parceira</span></div>
+          </div>
+          <div class="pv-clinic">
+            <div class="pv-clinic-icon">💊</div>
+            <div>
+              <div class="pv-clinic-name">Hospital Pet Recife</div>
+              <div class="pv-clinic-info">Derby · 3,1km · 24h</div>
+            </div>
+            <div class="pv-clinic-badge"><span class="badge badge-green">✓ Parceira</span></div>
+          </div>
+          <div class="pv-clinic">
+            <div class="pv-clinic-icon">🐾</div>
+            <div>
+              <div class="pv-clinic-name">Vet & Pet Olinda</div>
+              <div class="pv-clinic-info">Olinda · 5,3km · Aberta agora</div>
+            </div>
+            <div class="pv-clinic-badge"><span class="badge badge-blue">Em breve</span></div>
+          </div>
+        </div>
+        <div style="margin-top:1.25rem">
+          <a href="#" class="btn btn-outline btn-sm">Ver todas no mapa →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROTECTORS / PETCRM ══════════ -->
+<section class="section section-dark" id="protetores">
+  <div class="wrap">
+    <div class="protectors-inner">
+      <div>
+        <div class="eyebrow eyebrow-white">Para ONGs & Protetoras</div>
+        <h2 class="sec-title sec-title-white">Chega de Instagram + Excel. <span style="color:var(--yellow)">PetCRM</span> cuida do resto.</h2>
+        <p class="sec-desc sec-desc-white">O primeiro software brasileiro feito para quem resgata. Gestão completa, divulgação automática e doações via Pix. Gratuito até 10 animais.</p>
+        <div class="prot-features">
+          <div class="prot-feat">
+            <div class="prot-feat-icon">📊</div>
+            <div class="prot-feat-title">Painel de Gestão</div>
+            <div class="prot-feat-desc">Animais, históricos de saúde, status de adoção e KPIs em um só lugar.</div>
+          </div>
+          <div class="prot-feat">
+            <div class="prot-feat-icon">🤖</div>
+            <div class="prot-feat-title">Divulgação por IA</div>
+            <div class="prot-feat-desc">Post 1080×1080, Stories e link WhatsApp gerados automaticamente ao cadastrar.</div>
+          </div>
+          <div class="prot-feat">
+            <div class="prot-feat-icon">💸</div>
+            <div class="prot-feat-title">Captação via Pix</div>
+            <div class="prot-feat-desc">Doações diretas integradas com relatórios automáticos para prestação de contas.</div>
+          </div>
+          <div class="prot-feat">
+            <div class="prot-feat-icon">📈</div>
+            <div class="prot-feat-title">Relatórios de Impacto</div>
+            <div class="prot-feat-desc">KPIs prontos para atrair patrocínio corporativo e parcerias com clínicas.</div>
+          </div>
+        </div>
+        <div class="prot-pricing">
+          <div class="pp-free">Gratuito</div>
+          <div class="pp-free-desc">até 10 animais ativos. Sem cartão de crédito.</div>
+          <div class="pp-pro">Plano PRO a partir de R$ 99/mês — animais ilimitados + divulgação automática</div>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="#" class="btn btn-primary">Cadastrar minha ONG gratuitamente</a>
+          <a href="#" class="btn btn-outline-white btn-sm">Ver demonstração</a>
+        </div>
+      </div>
+      <div class="crm-mock">
+        <div class="crm-bar">
+          <div class="crm-dot" style="background:#FF5F57"></div>
+          <div class="crm-dot" style="background:#FFBD2E"></div>
+          <div class="crm-dot" style="background:#28C840"></div>
+          <span style="font-family:var(--fi);font-size:.7rem;color:rgba(255,255,255,.4);margin-left:.5rem">PetCRM — Painel da Protetora</span>
+        </div>
+        <div class="crm-screen">
+          <div class="crm-header">
+            <div class="crm-logo">MIAUmigos PetCRM</div>
+            <span class="badge badge-green">● Ao vivo</span>
+          </div>
+          <div class="crm-stats-row">
+            <div class="crm-stat">
+              <div class="crm-stat-num" style="color:var(--blue)">18</div>
+              <div class="crm-stat-lbl">Animais ativos</div>
+            </div>
+            <div class="crm-stat">
+              <div class="crm-stat-num" style="color:var(--green)">7</div>
+              <div class="crm-stat-lbl">Adoções/mês</div>
+            </div>
+            <div class="crm-stat">
+              <div class="crm-stat-num" style="color:var(--yellow-d)">R$340</div>
+              <div class="crm-stat-lbl">Doações (mês)</div>
+            </div>
+          </div>
+          <div class="crm-animal-row">
+            <div class="crm-emoji">🐶</div>
+            <div><div class="crm-name">Bidu · 2 anos · Médio</div><div class="crm-status">Em processo de adoção</div></div>
+            <div class="crm-badge-sm badge badge-yellow">Match 94%</div>
+          </div>
+          <div class="crm-animal-row">
+            <div class="crm-emoji">🐱</div>
+            <div><div class="crm-name">Luna · 1 ano · Pequena</div><div class="crm-status">Divulgação ativa — 3 interessados</div></div>
+            <div class="crm-badge-sm badge badge-blue">3 leads</div>
+          </div>
+          <div class="crm-animal-row">
+            <div class="crm-emoji">🐶</div>
+            <div><div class="crm-name">Thor · 2 anos · Grande</div><div class="crm-status">PetCare Dia 30 — Cupom vet enviado</div></div>
+            <div class="crm-badge-sm badge badge-green">Dia 30 ✓</div>
+          </div>
+          <div style="margin-top:.75rem;padding:.7rem;background:var(--blue-xs);border-radius:var(--r-md);font-family:var(--fi);font-size:.75rem;color:var(--blue-d);text-align:center">
+            🤖 IA gerou 3 posts hoje · Instagram + Stories + WhatsApp
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6 DIFERENCIAIS — SCROLL ACCORDION ══════════ -->
+<style>
+  /* ── SCROLL ACCORDION SECTION ── */
+  .features-scroll-section {
+    background: var(--white);
+    padding: 5rem 0;
+  }
+  .features-scroll-header {
+    text-align: center; max-width: 640px; margin: 0 auto 3.5rem;
+  }
+  .features-scroll-wrap {
+    position: relative;
+    max-width: 980px; margin: 0 auto;
+  }
+  /* Each row = big ghost name + hoverable banner */
+  .feat-row {
+    position: relative;
+    display: flex; align-items: center;
+    min-height: 120px;
+    cursor: pointer;
+    margin-bottom: .5rem;
+  }
+  /* Ghost big name behind */
+  .feat-ghost {
+    position: absolute; left: 0; right: 0;
+    display: flex; justify-content: center; align-items: center;
+    pointer-events: none; z-index: 0;
+    user-select: none;
+  }
+  .feat-ghost-text {
+    font-family: var(--ff);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    letter-spacing: -.04em;
+    color: rgba(0,0,0,.055);
+    line-height: 1;
+    white-space: nowrap;
+    transition: color .35s;
+  }
+  .feat-row.active .feat-ghost-text {
+    color: transparent;
+  }
+
+  /* Active banner */
+  .feat-banner {
+    position: relative; z-index: 2;
+    width: 100%;
+    border-radius: 999px;
+    display: flex; align-items: center;
+    padding: 0 2.5rem 0 0;
+    height: 88px;
+    overflow: visible;
+    opacity: 0;
+    transform: scaleX(.92) translateY(8px);
+    transition: opacity .4s cubic-bezier(.4,0,.2,1), transform .4s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+  }
+  .feat-row.active .feat-banner {
+    opacity: 1; transform: scaleX(1) translateY(0);
+    pointer-events: all;
+  }
+
+  .feat-banner-bg {
+    position: absolute; inset: 0;
+    border-radius: 999px;
+    z-index: 0;
+  }
+
+  /* Photo circle overflow */
+  .feat-photo {
+    width: 108px; height: 108px; flex-shrink: 0;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    object-fit: cover;
+    position: relative; z-index: 3;
+    margin-left: -4px;
+    margin-right: 1.75rem;
+    background: rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    flex-shrink: 0;
+  }
+
+  /* Name inside banner */
+  .feat-name {
+    font-family: var(--ff);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 900;
+    letter-spacing: -.03em;
+    color: white;
+    line-height: 1;
+    position: relative; z-index: 2;
+    flex: 1;
+    white-space: nowrap;
+  }
+
+  /* Desc + link on the right */
+  .feat-detail {
+    position: relative; z-index: 2;
+    text-align: right;
+    max-width: 300px;
+  }
+  .feat-detail-text {
+    font-family: var(--fi);
+    font-size: .8375rem;
+    color: rgba(255,255,255,.85);
+    line-height: 1.5;
+    margin-bottom: .75rem;
+  }
+  .feat-detail-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    padding: .45rem 1.25rem;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,.6);
+    border-radius: 999px;
+    font-family: var(--fi); font-size: .8125rem; font-weight: 600;
+    color: white; cursor: pointer; white-space: nowrap;
+    transition: all .2s;
+  }
+  .feat-detail-btn:hover { background: rgba(255,255,255,.2); border-color: white; }
+</style>
+
+<section class="features-scroll-section">
+  <div class="wrap">
+    <div class="features-scroll-header">
+      <div class="eyebrow" style="justify-content:center">Por que somos diferentes</div>
+      <h2 class="sec-title" style="text-align:center">Seis funcionalidades que <span class="hl">ninguém junta</span> em um lugar só.</h2>
+    </div>
+
+    <div class="features-scroll-wrap" id="featWrap">
+
+      <!-- 01 MiauMatch -->
+      <div class="feat-row" data-feat="0">
+        <div class="feat-ghost"><span class="feat-ghost-text">MiauMatch</span></div>
+        <div class="feat-banner">
+          <div class="feat-banner-bg" style="background:linear-gradient(135deg,#36A2EB,#1A7EC4)"></div>
+          <div class="feat-photo">🧠</div>
+          <div class="feat-name">MiauMatch™</div>
+          <div class="feat-detail">
+            <div class="feat-detail-text">Score 0–100 cruzando 12 atributos do adotante com o perfil comportamental real do animal.</div>
+            <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 MiauScore -->
+      <div class="feat-row" data-feat="1">
+        <div class="feat-ghost"><span class="feat-ghost-text">MiauScore</span></div>
+        <div class="feat-banner">
+          <div class="feat-banner-bg" style="background:linear-gradient(135deg,#27AE60,#1A8049)"></div>
+          <div class="feat-photo">🏆</div>
+          <div class="feat-name">MiauScore™</div>
+          <div class="feat-detail">
+            <div class="feat-detail-text">Verificação multicamada: CPF + endereço + vídeo-tour da casa. Badges Bronze/Prata/Ouro reutilizáveis.</div>
+            <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 MiauTrial -->
+      <div class="feat-row" data-feat="2">
+        <div class="feat-ghost"><span class="feat-ghost-text">MiauTrial</span></div>
+        <div class="feat-banner">
+          <div class="feat-banner-bg" style="background:linear-gradient(135deg,#6C6CE8,#4A4ABF)"></div>
+          <div class="feat-photo">📄</div>
+          <div class="feat-name">MiauTrial™</div>
+          <div class="feat-detail">
+            <div class="feat-detail-text">15 dias de adaptação monitorada com termo digital. Assinatura eletrônica. Devolução assistida sem culpa.</div>
+            <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 MiauCare -->
+      <div class="feat-row" data-feat="3">
+        <div class="feat-ghost"><span class="feat-ghost-text">MiauCare</span></div>
+        <div class="feat-banner">
+          <div class="feat-banner-bg" style="background:linear-gradient(135deg,#2EB07A,#1A8455)"></div>
+          <div class="feat-photo">💬</div>
+          <div class="feat-name">MiauCare™</div>
+          <div class="feat-detail">
+            <div class="feat-detail-text">90 dias de suporte pós-adoção com 6 check-ins automáticos + cupom veterinário + linha direta com protetora.</div>
+            <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 PetVet Network -->
+      <div class="feat-row" data-feat="4">
+        <div class="feat-ghost"><span class="feat-ghost-text">PetVetNetwork</span></div>
+        <div class="feat-banner">
+          <div class="feat-banner-bg" style="background:linear-gradient(135deg,#EB8C36,#C45E18)"></div>
+          <div class="feat-photo">💊</div>
+          <div class="feat-name">PetVet Network™</div>
+          <div class="feat-detail">
+            <div class="feat-detail-text">Rede de clínicas parceiras com cupom de 30% ativado automaticamente no dia 30 da adoção.</div>
+            <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 MiauCRM -->
+      <div class="feat-row" data-feat="5">
+        <div class="feat-ghost"><span class="feat-ghost-text">MiauCRM</span></div>
+        <div class="feat-banner">
+          <div class="feat-banner-bg" style="background:linear-gradient(135deg,#F7B500,#C48A00)"></div>
+          <div class="feat-photo" style="font-size:2.5rem">📊</div>
+          <div class="feat-name" style="color:var(--ink)">MiauCRM™</div>
+          <div class="feat-detail">
+            <div class="feat-detail-text" style="color:rgba(28,29,43,.75)">SaaS gratuito para protetoras — gestão, IA de divulgação, Pix integrado e relatórios de impacto.</div>
+            <a href="#protetores" class="feat-detail-btn" style="border-color:rgba(28,29,43,.4);color:var(--ink)">Ver detalhes →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  // ── FEATURE ACCORDION HOVER + SCROLL
+  const rows = document.querySelectorAll('.feat-row');
+
+  function activate(idx) {
+    rows.forEach((r, i) => r.classList.toggle('active', i === idx));
+  }
+
+  // Mouse hover on desktop
+  rows.forEach((row, i) => {
+    row.addEventListener('mouseenter', () => activate(i));
+  });
+  document.getElementById('featWrap').addEventListener('mouseleave', () => {
+    rows.forEach(r => r.classList.remove('active'));
+  });
+
+  // Scroll-based activation
+  function onScroll() {
+    const wrapRect = document.getElementById('featWrap').getBoundingClientRect();
+    const vh = window.innerHeight;
+    // Only activate when the section is in view
+    if (wrapRect.top > vh || wrapRect.bottom < 0) return;
+
+    const progress = (vh * 0.5 - wrapRect.top) / wrapRect.height;
+    const idx = Math.floor(progress * rows.length);
+    if (idx >= 0 && idx < rows.length) activate(idx);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+<!-- ══════════ HISTÓRIAS ══════════ -->
+<section class="section" id="historias">
+  <div class="wrap">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:.5rem;gap:1rem">
+      <div>
+        <div class="eyebrow">Histórias que inspiram</div>
+        <h2 class="sec-title">Encontros reais, <span class="hl">vidas transformadas.</span></h2>
+      </div>
+      <a href="#" class="btn btn-outline btn-sm">Ver todas →</a>
+    </div>
+    <div class="stories-scroll">
+      <div class="story-card">
+        <div class="story-img" style="background:linear-gradient(135deg,#DCF0FD,#B8E2FA)">🐶
+          <div class="story-label">✓ Adoção sólida — Dia 90</div>
+        </div>
+        <div class="story-body">
+          <div class="story-day">PetMatch 94% · Dia 90 concluído</div>
+          <div class="story-title">Thor mudou nossa vida</div>
+          <div class="story-text">Nossa família estava incompleta. O match foi certeiro — Thor tem a energia certa pro nosso apartamento e adora as crianças.</div>
+          <div class="story-author">
+            <div class="story-avatar">JT</div>
+            <div>
+              <div class="story-name">Juliana & Thor</div>
+              <div class="story-match">✦ Match 94% · PetScore Ouro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-img" style="background:linear-gradient(135deg,#D4F0DC,#90D4A4)">🐱
+          <div class="story-label">✓ Adoção sólida — Dia 90</div>
+        </div>
+        <div class="story-body">
+          <div class="story-day">PetMatch 89% · Dia 90 concluído</div>
+          <div class="story-title">A Nina era o que faltava</div>
+          <div class="story-text">Sem o acompanhamento do PetCare, eu teria devolvido ela na primeira semana. Os check-ins me ensinaram a entender o comportamento dela.</div>
+          <div class="story-author">
+            <div class="story-avatar" style="background:var(--green)">RN</div>
+            <div>
+              <div class="story-name">Raphael & Nina</div>
+              <div class="story-match">✦ Match 89% · PetScore Prata</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-img" style="background:linear-gradient(135deg,#F0D4DC,#D47A90)">🐶
+          <div class="story-label">✓ Adoção sólida — Dia 90</div>
+        </div>
+        <div class="story-body">
+          <div class="story-day">PetMatch 87% · Dia 90 concluído</div>
+          <div class="story-title">Bento trouxe alegria</div>
+          <div class="story-text">Nunca tive pet antes. O questionário me deu confiança de que era capaz. Os 90 dias de suporte foram essenciais no começo.</div>
+          <div class="story-author">
+            <div class="story-avatar" style="background:var(--yellow-d);color:var(--ink)">FB</div>
+            <div>
+              <div class="story-name">Fernando & Bento</div>
+              <div class="story-match">✦ Match 87% · PetScore Ouro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ REDE DE PROTETORES ══════════ -->
+<section class="section section-alt">
+  <div class="wrap">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:.5rem;gap:1rem;flex-wrap:wrap">
+      <div>
+        <div class="eyebrow">ONGs & Protetores Verificados</div>
+        <h2 class="sec-title">Uma rede verificada <span class="hl">de cuidado local.</span></h2>
+      </div>
+      <a href="#" class="btn btn-outline btn-sm">Ver todas →</a>
+    </div>
+    <div class="network-grid">
+      <div class="network-card">
+        <div class="nc-icon">🐾</div>
+        <div class="nc-name">Amor de Patas PE</div>
+        <div class="nc-loc">📍 Recife · PE</div>
+        <span class="nc-tag badge badge-green">✓ Verificada</span>
+      </div>
+      <div class="network-card">
+        <div class="nc-icon">🏠</div>
+        <div class="nc-name">Abrigo Miados</div>
+        <div class="nc-loc">📍 Recife · PE</div>
+        <span class="nc-tag badge badge-green">✓ Verificada</span>
+      </div>
+      <div class="network-card">
+        <div class="nc-icon">💛</div>
+        <div class="nc-name">Protetores Recife</div>
+        <div class="nc-loc">📍 Recife · PE</div>
+        <span class="nc-tag badge badge-green">✓ Verificada</span>
+      </div>
+      <div class="network-card">
+        <div class="nc-icon">🏡</div>
+        <div class="nc-name">Lar Temporário Azul</div>
+        <div class="nc-loc">📍 Recife · PE</div>
+        <span class="nc-tag badge badge-blue">PetCRM PRO</span>
+      </div>
+      <div class="network-card">
+        <div class="nc-icon">❤️</div>
+        <div class="nc-name">Coração Animal</div>
+        <div class="nc-loc">📍 Recife · PE</div>
+        <span class="nc-tag badge badge-green">✓ Verificada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA FINAL ══════════ -->
+<section class="cta-section">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h2 class="cta-title">Tem um lar. Tem um <span class="hy">match</span> esperando.</h2>
+      <p class="cta-desc">A primeira plataforma brasileira de adoção que trata o processo como um ciclo de 90 dias — não como uma entrega de fim de semana.</p>
+      <div class="cta-actions">
+        <a href="#encontrar" class="btn btn-primary btn-lg">🐾 Encontrar meu match</a>
+        <a href="#protetores" class="btn btn-outline-white btn-lg">Cadastrar minha ONG</a>
+      </div>
+      <div class="cta-note">
+        <svg class="icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        Dados protegidos pela LGPD · Sem cadastro obrigatório para navegar
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="color:rgba(255,255,255,.9)">
+          <span class="logo-blue">MiAU</span><span class="logo-yellow">mi</span>gos🐾
+        </div>
+        <p>Conectando lares e patas. Tecnologia e inteligência aplicada à adoção responsável de animais. Recife/PE · 2026.</p>
+        <div class="social-links" style="margin-top:1.25rem">
+          <a href="#" class="social-btn">ig</a>
+          <a href="#" class="social-btn">fb</a>
+          <a href="#" class="social-btn">tw</a>
+          <a href="#" class="social-btn">li</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegue</h4>
+        <ul>
+          <li><a href="#">Encontrar Pets</a></li>
+          <li><a href="#">Contatos</a></li>
+          <li><a href="#">Matches</a></li>
+          <li><a href="#">Filtros</a></li>
+          <li><a href="#">Histórias</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ONGs & Protetores</h4>
+        <ul>
+          <li><a href="#">PetCRM Gratuito</a></li>
+          <li><a href="#">Como funciona</a></li>
+          <li><a href="#">Plano PRO</a></li>
+          <li><a href="#">Parcerias</a></li>
+          <li><a href="#">Doações</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="#">Central de ajuda</a></li>
+          <li><a href="#">Dúvidas frequentes</a></li>
+          <li><a href="#">Comunidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Privacidade</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Siga por dentro</h4>
+        <ul>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Relatórios</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 MIAUmigos — Conectando lares e patas em Pernambuco.</div>
+      <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem">
+        <span style="color:rgba(255,255,255,.3)">UNICAP · Sistemas para Internet · Maria · Mariana · Mateus · Vanessa</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
