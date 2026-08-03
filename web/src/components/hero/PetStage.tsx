@@ -52,30 +52,33 @@ export function PetStage() {
       data-theme={active.color}
       aria-label="PetMatch hero"
     >
+      <div className={styles.wash} aria-hidden="true" />
+
       <div className={styles.inner}>
         <div className={styles.copy}>
           <p className={styles.brand}>PetMatch</p>
           <h1 className={styles.title}>
-            Find your
+            Encontre o seu
             <br />
-            best friend.
+            melhor amigo.
           </h1>
           <p className={styles.sub}>
-            Lifestyle matching, real adopter verification, and 90 days of
-            post-adoption support.
+            Matching por estilo de vida, verificação real do adotante e 90 dias
+            de suporte pós-adoção.
           </p>
           <div className={styles.actions}>
             <a className={styles.primary} href="#encontrar">
-              I want to adopt
+              Quero Adotar
             </a>
             <a className={styles.outline} href="#protetores">
-              I&apos;m a shelter / rescuer
+              Sou Protetora/ONG
             </a>
           </div>
         </div>
 
         <div className={styles.visual}>
           <div className={styles.orbitStage} aria-hidden="true">
+            <div className={styles.blob} />
             <div className={styles.ring} />
 
             <div className={styles.orbit}>
@@ -109,7 +112,7 @@ export function PetStage() {
                 key={slide.id}
                 type="button"
                 className={`${styles.dot} ${i === index ? styles.dotActive : ""}`}
-                aria-label={`Show pet ${i + 1}`}
+                aria-label={`Ver pet ${i + 1}`}
                 onClick={() => setIndex(i)}
               />
             ))}
