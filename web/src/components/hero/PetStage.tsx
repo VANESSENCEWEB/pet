@@ -46,6 +46,7 @@ export function PetStage() {
 
   return (
     <section
+      id="home"
       className={styles.stage}
       data-theme={active.color}
       aria-label="PetMatch hero"

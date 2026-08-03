@@ -1,0 +1,74 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid rgba(28, 29, 43, 0.06);
+}
+
+.inner {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  color: #1c1d2b;
+}
+
+.logoPet {
+  color: #0e7490;
+}
+
+.logoMatch {
+  color: #f97316;
+}
+
+.links {
+  display: none;
+  gap: 1.25rem;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(28, 29, 43, 0.72);
+}
+
+.link:hover {
+  color: #1c1d2b;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background: #1c1d2b;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .links {
+    display: flex;
+  }
+}
