@@ -20,11 +20,20 @@ Alto índice de devolução em adoções e pouca compatibilidade entre tutores e
 
 ## Stack atual
 
-HTML, CSS, JavaScript (protótipo de interface)
+- Protótipo legado: HTML, CSS, JavaScript em `legacy/prototype/`
+- App em evolução: Next.js (App Router) + TypeScript em `web/`
 
 ## Em evolução
 
-Auth, CRUD de pets, quiz de matching com persistência e deploy.
+Auth, CRUD de pets, quiz de matching com persistência e deploy na Vercel.
+
+## Desenvolvimento
+
+```bash
+cd web
+npm install
+npm run dev
+```
 
 ## Autora
 

@@ -1,0 +1,87 @@
+.section {
+  padding: 4.5rem 0 3rem;
+  background:
+    radial-gradient(circle at top left, rgba(184, 212, 200, 0.45), transparent 42%),
+    radial-gradient(circle at top right, rgba(168, 197, 216, 0.4), transparent 38%),
+    #f7f5f1;
+}
+
+.inner {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0e7490;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #1c1d2b;
+}
+
+.hl {
+  color: #f97316;
+}
+
+.all {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 1rem;
+  border: 1px solid rgba(28, 29, 43, 0.14);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1c1d2b;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.all:hover {
+  border-color: #0e7490;
+  color: #0e7490;
+}
+
+.track {
+  display: flex;
+  gap: 1.15rem;
+  overflow-x: auto;
+  padding: 0.25rem 0 1.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14, 116, 144, 0.45) transparent;
+}
+
+.track:focus-visible {
+  outline: 2px solid #0e7490;
+  outline-offset: 4px;
+  border-radius: 0.75rem;
+}
+
+@media (max-width: 700px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
