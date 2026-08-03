@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MIAUmigos — Adoção responsável de animais</title>
+  <title>PetMatch— Adoção responsável de animais</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 <nav class="nav">
   <div class="wrap nav-inner">
     <div class="logo">
-      <span class="logo-blue">MiAU</span><span class="logo-yellow">mi</span>gos<span class="logo-paw">🐾</span>
+      <span class="logo-blue">PetMatch</span><span class="logo-yellow">Pet</span>Match<span class="logo-paw">🐾</span>
     </div>
     <div class="nav-links">
       <a href="#encontrar" class="nav-link active">Encontrar Pets</a>
@@ -43,70 +43,50 @@
   </div>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" id="home">
-  <div class="wrap hero-inner">
-    <div class="hero-left">
-      <div class="hero-trust">
-        <span class="hero-trust-dot"></span>
-        🛡️ Adoção verificada e acompanhada
-      </div>
-      <h1 class="hero-title">
-        Encontre o seu<br>
-        <span class="hl">melhor amigo.</span>
-      </h1>
-      <p class="hero-sub">
-        Matching inteligente por estilo de vida, verificação real do adotante
-        e 90 dias de suporte pós-adoção. Adoção responsável que funciona de verdade.
+<!-- ══════════ HERO / PET STAGE ══════════ -->
+<section class="pet-stage" id="home" data-theme="mint" aria-label="PetMatch hero">
+  <div class="wrap pet-stage-inner">
+    <div class="pet-stage-copy">
+      <p class="pet-stage-brand">PetMatch</p>
+      <h1 class="pet-stage-title">Encontre o seu<br>melhor amigo.</h1>
+      <p class="pet-stage-sub">
+        Matching por estilo de vida, verificação real do adotante
+        e 90 dias de suporte pós-adoção.
       </p>
-      <div class="hero-actions">
-        <a href="#encontrar" class="btn btn-primary btn-lg">
-          🐾 Quero Adotar
-        </a>
-        <a href="#protetores" class="btn btn-outline btn-lg">
-          Sou Protetora/ONG
-        </a>
-      </div>
-      <div class="hero-stats">
-        <div class="hs-item">
-          <div class="hs-num">+4.200</div>
-          <div class="hs-lbl">adoções bem-sucedidas</div>
-        </div>
-        <div class="hs-item">
-          <div class="hs-num" style="color:var(--green)">&lt;8%</div>
-          <div class="hs-lbl">taxa de devolução</div>
-        </div>
-        <div class="hs-item">
-          <div class="hs-num" style="color:var(--blue)">90 dias</div>
-          <div class="hs-lbl">de suporte garantido</div>
-        </div>
+      <div class="pet-stage-actions">
+        <a href="#encontrar" class="btn btn-primary btn-lg">Quero Adotar</a>
+        <a href="#protetores" class="btn btn-stage-outline btn-lg">Sou Protetora/ONG</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <!-- Floating cards -->
-      <div class="hero-float hf-1">
-        <div class="hf-label">PetMatch Score</div>
-        <div class="hf-value" style="color:var(--green)">🐶 Bidu — 94%</div>
-        <div class="hf-score">
-          <div class="hf-score-bar"><div class="hf-score-fill" style="width:94%;background:var(--green)"></div></div>
-          <span class="hf-pct" style="color:var(--green)">94%</span>
-        </div>
-        <div class="hf-sub">Compatível com seu estilo de vida</div>
+
+    <div class="pet-stage-visual" aria-hidden="true">
+      <div class="pet-stage-track" id="petStageTrack">
+        <article class="pet-bubble is-active" data-color="mint">
+          <img
+            src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80"
+            alt=""
+          />
+        </article>
+        <article class="pet-bubble" data-color="yellow">
+          <img
+            src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800&q=80"
+            alt=""
+          />
+        </article>
+        <article class="pet-bubble" data-color="blue">
+          <img
+            src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&q=80"
+            alt=""
+          />
+        </article>
+        <article class="pet-bubble" data-color="pink">
+          <img
+            src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=800&q=80"
+            alt=""
+          />
+        </article>
       </div>
-      <div class="hero-float hf-2">
-        <div class="hf-label">PetScore</div>
-        <div class="hf-value">🏆 Badge Ouro</div>
-        <div class="hf-sub">Adotante verificado ✓</div>
-      </div>
-      <div class="hero-float hf-3">
-        <div class="hf-label">PetCare — Dia 30</div>
-        <div class="hf-value" style="color:var(--blue)">💊 Cupom Vet 30%</div>
-        <div class="hf-sub">Clínica parceira próxima</div>
-      </div>
-      <!-- Blob + animals -->
-      <div class="hero-img-blob">
-        <div class="hero-pets-emoji">🐶🐱</div>
-      </div>
+      <div class="pet-stage-dots" id="petStageDots"></div>
     </div>
   </div>
 </section>
@@ -834,13 +814,13 @@
 
     <div class="features-scroll-wrap" id="featWrap">
 
-      <!-- 01 MiauMatch -->
+      <!-- 01 PetMatch -->
       <div class="feat-row" data-feat="0">
-        <div class="feat-ghost"><span class="feat-ghost-text">MiauMatch</span></div>
+        <div class="feat-ghost"><span class="feat-ghost-text">PetMatch</span></div>
         <div class="feat-banner">
           <div class="feat-banner-bg" style="background:linear-gradient(135deg,#36A2EB,#1A7EC4)"></div>
           <div class="feat-photo">🧠</div>
-          <div class="feat-name">MiauMatch™</div>
+          <div class="feat-name">PetMatch™</div>
           <div class="feat-detail">
             <div class="feat-detail-text">Score 0–100 cruzando 12 atributos do adotante com o perfil comportamental real do animal.</div>
             <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
@@ -848,13 +828,13 @@
         </div>
       </div>
 
-      <!-- 02 MiauScore -->
+      <!-- 02 PetScore -->
       <div class="feat-row" data-feat="1">
-        <div class="feat-ghost"><span class="feat-ghost-text">MiauScore</span></div>
+        <div class="feat-ghost"><span class="feat-ghost-text">PetScore</span></div>
         <div class="feat-banner">
           <div class="feat-banner-bg" style="background:linear-gradient(135deg,#27AE60,#1A8049)"></div>
           <div class="feat-photo">🏆</div>
-          <div class="feat-name">MiauScore™</div>
+          <div class="feat-name">PetScore™</div>
           <div class="feat-detail">
             <div class="feat-detail-text">Verificação multicamada: CPF + endereço + vídeo-tour da casa. Badges Bronze/Prata/Ouro reutilizáveis.</div>
             <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
@@ -862,13 +842,13 @@
         </div>
       </div>
 
-      <!-- 03 MiauTrial -->
+      <!-- 03 PetTrial -->
       <div class="feat-row" data-feat="2">
-        <div class="feat-ghost"><span class="feat-ghost-text">MiauTrial</span></div>
+        <div class="feat-ghost"><span class="feat-ghost-text">PetTrial</span></div>
         <div class="feat-banner">
           <div class="feat-banner-bg" style="background:linear-gradient(135deg,#6C6CE8,#4A4ABF)"></div>
           <div class="feat-photo">📄</div>
-          <div class="feat-name">MiauTrial™</div>
+          <div class="feat-name">PetTrial™</div>
           <div class="feat-detail">
             <div class="feat-detail-text">15 dias de adaptação monitorada com termo digital. Assinatura eletrônica. Devolução assistida sem culpa.</div>
             <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
@@ -876,13 +856,13 @@
         </div>
       </div>
 
-      <!-- 04 MiauCare -->
+      <!-- 04 PetCare -->
       <div class="feat-row" data-feat="3">
-        <div class="feat-ghost"><span class="feat-ghost-text">MiauCare</span></div>
+        <div class="feat-ghost"><span class="feat-ghost-text">PetCare</span></div>
         <div class="feat-banner">
           <div class="feat-banner-bg" style="background:linear-gradient(135deg,#2EB07A,#1A8455)"></div>
           <div class="feat-photo">💬</div>
-          <div class="feat-name">MiauCare™</div>
+          <div class="feat-name">PetCare™</div>
           <div class="feat-detail">
             <div class="feat-detail-text">90 dias de suporte pós-adoção com 6 check-ins automáticos + cupom veterinário + linha direta com protetora.</div>
             <a href="#como-funciona" class="feat-detail-btn">Ver detalhes →</a>
