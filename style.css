@@ -1,14 +1,14 @@
 
     :root {
-      --blue:      #36A2EB;
-      --blue-d:    #1A7EC4;
-      --blue-l:    #7EC8F5;
-      --blue-xs:   rgba(54,162,235,.08);
-      --blue-sm:   rgba(54,162,235,.15);
-      --yellow:    #F7B500;
-      --yellow-d:  #D49A00;
-      --yellow-l:  #FFD44D;
-      --yellow-xs: rgba(247,181,0,.1);
+      --blue:      #0E7490;   /* primary */
+  --blue-d:    #0B5F75;
+  --blue-l:    #22A1B7;
+  --blue-xs:   rgba(14,116,144,.08);
+  --blue-sm:   rgba(14,116,144,.15);
+  --yellow:    #F97316;   /* accent */
+  --yellow-d:  #EA6A0A;
+  --yellow-l:  #FB923C;
+  --yellow-xs: rgba(249,115,22,.12);
       --green:     #27AE60;
       --green-l:   #6FCF97;
       --green-xs:  rgba(39,174,96,.1);
@@ -19,7 +19,7 @@
       --gray:      #6B7080;
       --gray-l:    #A0A5B4;
       --border:    #E8EAF0;
-      --bg:        #F7F9FC;
+       --bg:        #F4F8F9;
       --white:     #FFFFFF;
       --ff:        'Poppins', sans-serif;
       --fi:        'Inter', sans-serif;
