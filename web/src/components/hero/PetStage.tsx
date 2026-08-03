@@ -35,17 +35,19 @@ const SLIDES: PetSlide[] = [
 
 export function PetStage() {
   const [index, setIndex] = useState(0);
+  const total = SLIDES.length;
   const active = SLIDES[index];
 
   useEffect(() => {
     const id = window.setInterval(() => {
-      setIndex((current) => (current + 1) % SLIDES.length);
+      setIndex((current) => (current + 1) % total);
     }, 3200);
     return () => window.clearInterval(id);
-  }, []);
+  }, [total]);
 
   return (
     <section
+      id="home"
       className={styles.stage}
       data-theme={active.color}
       aria-label="PetMatch hero"
@@ -54,40 +56,51 @@ export function PetStage() {
         <div className={styles.copy}>
           <p className={styles.brand}>PetMatch</p>
           <h1 className={styles.title}>
-            Encontre o seu
+            Find your
             <br />
-            melhor amigo.
+            best friend.
           </h1>
           <p className={styles.sub}>
-            Matching por estilo de vida, verificação real do adotante e 90 dias
-            de suporte pós-adoção.
+            Lifestyle matching, real adopter verification, and 90 days of
+            post-adoption support.
           </p>
           <div className={styles.actions}>
             <a className={styles.primary} href="#encontrar">
-              Quero Adotar
+              I want to adopt
             </a>
             <a className={styles.outline} href="#protetores">
-              Sou Protetora/ONG
+              I&apos;m a shelter / rescuer
             </a>
           </div>
         </div>
 
         <div className={styles.visual}>
-          <div className={styles.track}>
-            {SLIDES.map((slide, i) => (
-              <article
-                key={slide.id}
-                className={`${styles.bubble} ${i === index ? styles.active : ""}`}
-              >
-                <Image
-                  src={slide.src}
-                  alt=""
-                  fill
-                  sizes="(max-width: 900px) 78vw, 360px"
-                  priority={i === 0}
-                />
-              </article>
-            ))}
+          <div className={styles.orbitStage} aria-hidden="true">
+            <div className={styles.ring} />
+
+            <div className={styles.orbit}>
+              {SLIDES.map((slide, i) => (
+                <article
+                  key={slide.id}
+                  className={`${styles.satellite} ${i === index ? styles.isEntering : ""}`}
+                  style={{ ["--slot" as string]: String(i) }}
+                >
+                  <div className={styles.satelliteInner}>
+                    <Image src={slide.src} alt="" fill sizes="140px" />
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <article className={styles.center} key={active.id}>
+              <Image
+                src={active.src}
+                alt=""
+                fill
+                sizes="280px"
+                priority
+              />
+            </article>
           </div>
 
           <div className={styles.dots}>
@@ -96,7 +109,7 @@ export function PetStage() {
                 key={slide.id}
                 type="button"
                 className={`${styles.dot} ${i === index ? styles.dotActive : ""}`}
-                aria-label={`Ver pet ${i + 1}`}
+                aria-label={`Show pet ${i + 1}`}
                 onClick={() => setIndex(i)}
               />
             ))}
